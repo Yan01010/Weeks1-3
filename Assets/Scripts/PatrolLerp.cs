@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class PatrolLerp : MonoBehaviour
 {
+    public Transform[] waypoints;
+
+
     public AnimationCurve curve;
     [Range(0, 1)]
+
     public float t;
-    public Transform A;
-    public Transform B;
+
+    public int waypointIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,18 @@ public class PatrolLerp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.Lerp(A.position, B.position, curve.Evaluate(t));
+
+        t += Time.deltaTime;
+
+        if (t >= 1f)
+        {
+            t = 0f;
+            waypointIndex = (waypointIndex + 1); 
+        }
+
+        Transform currentWaypoint = waypoints[waypointIndex];
+        Transform nextWaypoint = waypoints[(waypointIndex + 1)];
+
+        transform.position = Vector2.Lerp(currentWaypoint.position, nextWaypoint.position, curve.Evaluate(t));
     }
 }

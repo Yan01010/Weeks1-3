@@ -24,17 +24,17 @@ public class PatrolLerp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         t += Time.deltaTime;
 
         if (t >= 1f)
         {
-            t = 0f;
-            waypointIndex = (waypointIndex + 1); 
+            t = 0f; 
+            waypointIndex = (waypointIndex + 1) % waypoints.Length; 
         }
 
         Transform currentWaypoint = waypoints[waypointIndex];
-        Transform nextWaypoint = waypoints[(waypointIndex + 1)];
+        Transform nextWaypoint = waypoints[(waypointIndex + 1) % waypoints.Length];
 
         transform.position = Vector2.Lerp(currentWaypoint.position, nextWaypoint.position, curve.Evaluate(t));
     }

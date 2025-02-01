@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Twinkle : MonoBehaviour
 {
-    public float Speed;   // Speed of the twinkling effect (higher is faster)
-    public float minOpacity = 0f;       // Minimum opacity (fully transparent)
+    public float Speed;
+
+    //opacity of the stars
+    public float minOpacity = 0f;
     public float maxOpacity = 1f;
 
     private SpriteRenderer sr;
@@ -19,6 +21,7 @@ public class Twinkle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //make the stars twinkle by increasing and decreasing opacity
         float alpha = Mathf.Lerp(minOpacity, maxOpacity, Mathf.PingPong(Time.time * Speed, 1f));
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
     }

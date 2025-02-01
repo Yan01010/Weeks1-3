@@ -18,6 +18,7 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //getting mouse position
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
 

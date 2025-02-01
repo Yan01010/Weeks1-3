@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StarSpawn : MonoBehaviour
 {
+    //number of stars
     public int starNum = 50;
     public GameObject circle;
     public GameObject bg1;
@@ -11,6 +12,7 @@ public class StarSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //spawn stars function
         SpawnCircles();
     }
 
@@ -20,6 +22,7 @@ public class StarSpawn : MonoBehaviour
         float screenWidth = camera.orthographicSize * camera.aspect;
         float screenHeight = camera.orthographicSize;
 
+        //spawing 50 stars
         for (int i = 0; i < starNum; i++)
         {
             //random position within the camera's view
@@ -29,6 +32,7 @@ public class StarSpawn : MonoBehaviour
             GameObject newCircle = Instantiate(circle, randomPosition, Quaternion.identity);
             newCircle.transform.localScale = new Vector3(0.1f, 0.1f, 0.4f);
 
+            //move with the parent
             newCircle.transform.SetParent(bg1.transform);
 
         }
